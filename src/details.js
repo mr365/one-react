@@ -49,7 +49,7 @@ class Details extends React.Component {
     const { animal, name, media, breed, location, description } = this.state;
     return (
       <div className="details">
-        <Carousel media={media}> />
+        <Carousel media={media} />
         <div>
           <h1>{name}</h1>
           <h2>
