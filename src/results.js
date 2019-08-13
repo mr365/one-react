@@ -1,7 +1,6 @@
 import React from "react";
 import pf from "petfinder-client";
 import Pet from "./Pet";
-import petfinderClient from "petfinder-client";
 
 const petfinder = pf({
   key: process.env.API_KEY,
