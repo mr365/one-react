@@ -1,21 +1,24 @@
 import React from "react";
 import pf from "petfinder-client";
 import Pet from "./Pet";
+import SearchBox from "./SearchBox";
 
 const petfinder = pf({
   key: process.env.API_KEY,
   secret: process.env.API_SECRET
 });
-class Result extends React.Component {
+
+class Results extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       pets: []
     };
   }
   componentDidMount() {
     petfinder.pet
-      .find({ output: "full", location: "New york, NY" })
+      .find({ location: "Seattle, WA", output: "full" })
       .then(data => {
         let pets;
         if (data.petfinder.pets && data.petfinder.pets.pet) {
@@ -27,7 +30,6 @@ class Result extends React.Component {
         } else {
           pets = [];
         }
-
         this.setState({
           pets: pets
         });
@@ -36,6 +38,7 @@ class Result extends React.Component {
   render() {
     return (
       <div className="search">
+        <SearchBox />
         {this.state.pets.map(pet => {
           let breed;
           if (Array.isArray(pet.breeds.breed)) {
@@ -60,4 +63,4 @@ class Result extends React.Component {
   }
 }
 
-export default Result;
+export default Results;
